@@ -1,3 +1,3 @@
 function alertMessage(){
-    alert('${welcomeMessage}');
+    alert('<spring:message code="welcome.name" />');
 }

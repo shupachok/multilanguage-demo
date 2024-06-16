@@ -1,5 +1,6 @@
 package com.sp.multilanguagedemo.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,8 @@ public class HomeController {
     private MessageSource messageSource;
 
     @RequestMapping(value = "{language}/helloworld")
-    public String home(@PathVariable String language, ModelMap model) {
+    public String home(HttpServletRequest request, @PathVariable String language, ModelMap model) {
+        request.setAttribute("language", language);
 
         Locale locale = Locale.forLanguageTag(language);
         String welcomeMessage = messageSource.getMessage("welcome.message", null, locale);
